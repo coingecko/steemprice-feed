@@ -20,6 +20,15 @@ Read `Makefile` for the full command being used.
 
 - git clone this repo `git clone git@github.com:coingecko/steemprice-feed.git`
 - edit .env.sample to .env
+
+```
+ACTIVE_KEY= # Steem Active Key (String)
+WITNESS= # Steem Witness Username (String)
+PEGMULTI=1 # Peg Multiple settings (Number) [default: 1]
+WEBSOCKETTIMEOUT=10 # Time out for checking web socket (Number) [default: 10]
+PRICETIMEOUT=5 # Time out for last price check (Number) [default: 5]
+```
+
 - run `make init` to install pm2, skip this step if you already install pm2
 - run `make start` (start the tool with pm2)
 

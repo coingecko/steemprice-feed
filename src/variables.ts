@@ -11,3 +11,5 @@ export const SteemApiArray = Object.keys(SteemAPI).map((d: any) => SteemAPI[d]);
 export const WITNESS = process.env.WITNESS!;
 export const ACTIVEKEY = process.env.ACTIVEKEY!;
 export const PEGMULTI = parseInt(process.env.PEGMULTI!) || 1;
+export const WEBSOCKETTIMEOUT = parseInt(process.env.WEBSOCKETTIMEOUT!) || 10;
+export const PRICETIMEOUT = parseInt(process.env.PRICETIMEOUT!) || 5;
