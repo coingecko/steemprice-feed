@@ -9,6 +9,7 @@ const sfp = new SteemFeedPrice(SteemFeedPrice.steemApiList.steemit);
 sfp.start();
 
 setInterval(() => {
+  L.log("10 minutes crone job check the last price update");
   const timeNow = Date.now();
   const timeDiff = timeNow - sfp.lastPriceUpdate!;
   if (timeDiff > 5 * 60 * 1000) {
