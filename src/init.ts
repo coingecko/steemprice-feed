@@ -18,4 +18,4 @@ setInterval(() => {
     sfp.updatePriceRest();
     sfp.initWebsocket();
   }
-}, 10 * 1000);
+}, 10 * 60 * 1000);
