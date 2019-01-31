@@ -1,0 +1,41 @@
+{
+  "name": "steem-price-feed",
+  "version": "0.0.1",
+  "description": "Update steemfeed price with coingecko API and Websocket & fallback",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "dotenv": "^6.2.0",
+    "dsteem": "^0.11.2",
+    "fs-extra": "^7.0.1",
+    "ws": "^6.1.3"
+  },
+  "devDependencies": {
+    "@types/bytebuffer": "^5.0.40",
+    "@types/dotenv": "^6.1.0",
+    "@types/fs-extra": "^5.0.4",
+    "@types/inquirer": "0.0.43",
+    "@types/jest": "^23.3.13",
+    "@types/node-fetch": "^2.1.5",
+    "@types/ora": "^3.0.0",
+    "@types/ws": "^6.0.1",
+    "commander": "^2.19.0",
+    "inquirer": "^6.2.1",
+    "jest": "^24.0.0",
+    "node-fetch": "^2.3.0",
+    "ora": "^3.0.0",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.2.4"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc"
+  },
+  "keywords": [
+    "steem"
+  ],
+  "author": "CoinGecko",
+  "license": "MIT",
+  "files": [
+    "lib"
+  ]
+}
