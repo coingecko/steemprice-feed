@@ -19,6 +19,7 @@ Update Steem Price Feed for Witness using CoinGecko API and WebSocket.
 Read `Makefile` for the full command being used.
 
 - git clone this repo `git clone git@github.com:coingecko/steemprice-feed.git`
+- edit .env.sample to .env
 - run `make init` to install pm2, skip this step if you already install pm2
 - run `make start` (start the tool with pm2)
 
