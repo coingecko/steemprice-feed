@@ -1,5 +1,7 @@
 # Steem-Price-Feed
 
+[![Build Status](https://travis-ci.org/coingecko/steemprice-feed.svg?branch=master)](https://travis-ci.org/coingecko/steemprice-feed)
+
 Update Steem Price Feed for Witness using CoinGecko API and WebSocket.
 
 ## Feature
