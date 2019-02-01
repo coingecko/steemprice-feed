@@ -1,6 +1,6 @@
 init:
-	@read -p "Have you install nodejs (v8+)?"
-	@read -p "Ok, have you setup .env.sample to .env?"
+	@read -p "Have you install nodejs (v8+)?" argument
+	@read -p "Ok, have you setup .env.sample to .env?" argument
 	@echo "Installing dependencies"
 	@npm i
 	@echo "Installing pm2"
