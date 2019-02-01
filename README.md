@@ -16,6 +16,18 @@ Update Steem Price Feed for Witness using CoinGecko API and WebSocket.
 
 ## Setup
 
+### Docker
+
+```sh
+docker-compose build # Build the docker image
+docker-compose up -d # Run the docker
+docker-compose logs # to see log message
+docker-compose logs --tail="all" # To see all logs
+docker-compose down # To shut down docker
+```
+
+### Without Docker
+
 Read `Makefile` for the full command being used.
 
 - git clone this repo `git clone git@github.com:coingecko/steemprice-feed.git`
