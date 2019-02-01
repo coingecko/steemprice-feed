@@ -4,8 +4,7 @@ import {
   SteemApiArray,
   ACTIVEKEY,
   WITNESS,
-  PEGMULTI,
-  SENSITIVITY
+  PEGMULTI
 } from "./variables";
 import { coinDataListener } from "./websocket";
 import { fetchCgSimplePrice } from "./restapi";
@@ -19,7 +18,6 @@ export default class SteemFeedPrice {
   public currentApiPosition = 0;
   public availableSteemApi = SteemApiArray;
   public bitcoinPrice = 0;
-  public steemPrice = 0;
   public lastPriceUpdate: number = 0;
 
   // Static data
@@ -49,27 +47,14 @@ export default class SteemFeedPrice {
     }
     this.coinDataListener = coinDataListener(["steem"], data => {
       const currentPrice = data.data.p.usd;
-      L.log(`[ws 🦎 ] Current Steem Price ${currentPrice}`);
-      const prevPrice = this.steemPrice;
-      if (Math.abs(prevPrice - currentPrice) > SENSITIVITY) {
-        this.steemPrice = currentPrice;
-        this.publishFeed(currentPrice, 3);
-      } else {
-        L.log("[ws 🦎 ] Price not change");
-      }
+      L.log(`[🦎] Current Steem Price ${currentPrice}`);
+      this.publishFeed(currentPrice, 3);
     });
   }
 
   public async updatePriceRest() {
-    const currentPrice = await this.getSteemPrice();
-    L.log(`[api 🦎 ] Current Steem Price ${currentPrice}`);
-    const prevPrice = this.steemPrice;
-    if (Math.abs(prevPrice - currentPrice) > SENSITIVITY) {
-      this.steemPrice = currentPrice;
-      this.publishFeed(currentPrice, 3);
-    } else {
-      L.log("[api 🦎 ] Price not change");
-    }
+    const steemPrice = await this.getSteemPrice();
+    this.publishFeed(steemPrice, 3);
   }
 
   public async getBtcPrice() {
@@ -95,7 +80,7 @@ export default class SteemFeedPrice {
         [op],
         PrivateKey.from(ACTIVEKEY)
       );
-      L.success(`Successful update price to ${price.toFixed(3)} (${price})`);
+      L.success(`Successful update price to ${price}`);
       this.lastPriceUpdate = Date.now();
       this.retries = 0;
     } catch (error) {
