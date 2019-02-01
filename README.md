@@ -50,6 +50,13 @@ docker-compose down # To shut down docker
 - run `make init` to install pm2 (skip this step if you already install pm2, and run `npm install`)
 - run `make start` (start the tool with pm2)
 
+There is other command available as well:
+
+- To stop the price feed update, run `make stop`
+- To delete existing process running run `make delete`
+- To check log message, run `make log`
+- To check log message (last 1000), run `make log-1000`
+
 ## RoadMap
 
 - Fallback to Exchange data source.

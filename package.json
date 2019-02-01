@@ -37,5 +37,14 @@
   "license": "MIT",
   "files": [
     "lib"
-  ]
+  ],
+  "main": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coingecko/steemprice-feed.git"
+  },
+  "bugs": {
+    "url": "https://github.com/coingecko/steemprice-feed/issues"
+  },
+  "homepage": "https://github.com/coingecko/steemprice-feed#readme"
 }

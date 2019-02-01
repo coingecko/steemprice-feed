@@ -1,9 +1,7 @@
 init:
-	@echo "Have you install nodejs (v8+)? (y/n)"
-	@read nodeInstall
-	@if [[ $nodeInstall == "y" ]] ; then echo "Ok, have you setup .env.sample to .env?"; else echo "Please add nodejs first." && exit 1; fi
-	@read envSetup
-	@if [[ $nodeInstall == "y" ]] ; then echo "Alright install current dir"; else echo "Please setup .env first."; && exit 1; fi
+	@read -p "Have you install nodejs (v8+)?"
+	@read -p "Ok, have you setup .env.sample to .env?"
+	@echo "Installing dependencies"
 	@npm i
 	@echo "Installing pm2"
 	@npm i -g pm2
