@@ -31,8 +31,12 @@ WITNESS= # Steem Witness Username (String)
 PEGMULTI=1 # Peg Multiple settings (Number) [default: 1]
 WEBSOCKETTIMEOUT=10 # Time out in minutes for checking web socket (Number) [default: 10]
 PRICETIMEOUT=5 # Time out in minutes for last price check (Number) [default: 5]
-SENSITIVITY=0.001 # Sensitivity for the price update. (Float) [default: 0.001]
+SENSITIVITY=0.000 # Sensitivity for the price update. (Float) [default: 0.000]
 ```
+
+- The default SENSITIVITY is set to `0.000` so that whenever there's a price change, the script will update STEEM price.
+- WEBSOCKETTIMEOUT is to check whether the websocket update the price or not (using js `setInterval`)
+- PRICETIMEOUT will check the last price update date time, to check whether web socket did get the price from the server. If not, restart the web socket connection.
 
 ### Docker
 
