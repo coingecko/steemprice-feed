@@ -4,8 +4,7 @@ import {
   SteemApiArray,
   ACTIVEKEY,
   WITNESS,
-  PEGMULTI,
-  SENSITIVITY
+  PEGMULTI
 } from "./variables";
 import { coinDataListener } from "./websocket";
 import { fetchCgSimplePrice } from "./restapi";
@@ -19,7 +18,6 @@ export default class SteemFeedPrice {
   public currentApiPosition = 0;
   public availableSteemApi = SteemApiArray;
   public bitcoinPrice = 0;
-  public steemPrice = 0;
   public lastPriceUpdate: number = 0;
 
   // Static data
@@ -95,7 +93,7 @@ export default class SteemFeedPrice {
         [op],
         PrivateKey.from(ACTIVEKEY)
       );
-      L.success(`Successful update price to ${price.toFixed(3)} (${price})`);
+      L.success(`Successful update price to ${price}`);
       this.lastPriceUpdate = Date.now();
       this.retries = 0;
     } catch (error) {
