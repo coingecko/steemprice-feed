@@ -95,7 +95,7 @@ export default class SteemFeedPrice {
         [op],
         PrivateKey.from(ACTIVEKEY)
       );
-      L.success(`Successful update price to ${price}`);
+      L.success(`Successful update price to $${price.toFixed(3)} (${price})`);
       this.lastPriceUpdate = Date.now();
       this.retries = 0;
     } catch (error) {
