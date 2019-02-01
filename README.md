@@ -25,7 +25,7 @@ Update Steem Price Feed for Witness using CoinGecko API and WebSocket.
 - edit .env.sample to .env (`cp .env.sample .env` then `nano .env` or `vi .env`)
 
 ```
-ACTIVE_KEY= # Steem Active Key (String)
+ACTIVEKEY= # Steem Active Key (String)
 WITNESS= # Steem Witness Username (String)
 PEGMULTI=1 # Peg Multiple settings (Number) [default: 1]
 WEBSOCKETTIMEOUT=10 # Time out in minutes for checking web socket (Number) [default: 10]
