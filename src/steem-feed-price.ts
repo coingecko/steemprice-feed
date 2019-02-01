@@ -4,7 +4,8 @@ import {
   SteemApiArray,
   ACTIVEKEY,
   WITNESS,
-  PEGMULTI
+  PEGMULTI,
+  SENSITIVITY
 } from "./variables";
 import { coinDataListener } from "./websocket";
 import { fetchCgSimplePrice } from "./restapi";
@@ -17,6 +18,7 @@ export default class SteemFeedPrice {
   public retries = 0;
   public currentApiPosition = 0;
   public availableSteemApi = SteemApiArray;
+  public steemPrice = 0;
   public bitcoinPrice = 0;
   public lastPriceUpdate: number = 0;
 
