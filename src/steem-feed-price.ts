@@ -52,7 +52,7 @@ export default class SteemFeedPrice {
       L.log(`[ws 🦎 ] Current Steem Price ${currentPrice}`);
       const prevPrice = this.steemPrice;
       if (Math.abs(prevPrice - currentPrice) > SENSITIVITY) {
-        this.steemPrice = currentPrice;
+        this.steemPrice = parseFloat(parseFloat(`${currentPrice}`).toFixed(3));
         this.publishFeed(currentPrice, 3);
       } else {
         L.log("[ws 🦎 ] Price not change");
@@ -65,7 +65,7 @@ export default class SteemFeedPrice {
     L.log(`[api 🦎 ] Current Steem Price ${currentPrice}`);
     const prevPrice = this.steemPrice;
     if (Math.abs(prevPrice - currentPrice) > SENSITIVITY) {
-      this.steemPrice = currentPrice;
+      this.steemPrice = parseFloat(parseFloat(`${currentPrice}`).toFixed(3));
       this.publishFeed(currentPrice, 3);
     } else {
       L.log("[api 🦎 ] Price not change");
