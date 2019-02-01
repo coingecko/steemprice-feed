@@ -1,0 +1,9 @@
+version: "3.3"
+services:
+  spf:
+    build: .
+    command: node dist/index.js
+    env_file:
+      - .env
+    restart: on-failure
+    tty: true

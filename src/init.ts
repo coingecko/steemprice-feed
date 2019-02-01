@@ -3,7 +3,17 @@ dotenv.config();
 
 import SteemFeedPrice from "./steem-feed-price";
 import L from "./logger";
-import { WEBSOCKETTIMEOUT, PRICETIMEOUT } from "./variables";
+import {
+  WEBSOCKETTIMEOUT,
+  PRICETIMEOUT,
+  WITNESS,
+  ACTIVEKEY
+} from "./variables";
+
+if (!WITNESS || !ACTIVEKEY) {
+  L.error("ENV not setup");
+  process.exit(1);
+}
 
 const sfp = new SteemFeedPrice(SteemFeedPrice.steemApiList.steemit);
 sfp.start();
