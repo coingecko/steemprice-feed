@@ -9,6 +9,7 @@ Update Steem Price Feed for Witness using CoinGecko API and WebSocket.
 - Using CoinGecko websocket to update Steem price feed on the fly.
 - In case websocket disconnected use CoinGecko REST API `/simple/price` endpoint to update price and restart websocket.
 - Using Docker or PM2 approach to respawn the script on error.
+- Customizable env file for setting up websocket, price time out, and sensitivity.
 
 ## Prerequisite
 
@@ -30,6 +31,7 @@ WITNESS= # Steem Witness Username (String)
 PEGMULTI=1 # Peg Multiple settings (Number) [default: 1]
 WEBSOCKETTIMEOUT=10 # Time out in minutes for checking web socket (Number) [default: 10]
 PRICETIMEOUT=5 # Time out in minutes for last price check (Number) [default: 5]
+SENSITIVITY=0.001 # Sensitivity for the price update. (Float) [default: 0.001]
 ```
 
 ### Docker

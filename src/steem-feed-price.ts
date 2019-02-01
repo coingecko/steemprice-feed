@@ -47,14 +47,27 @@ export default class SteemFeedPrice {
     }
     this.coinDataListener = coinDataListener(["steem"], data => {
       const currentPrice = data.data.p.usd;
-      L.log(`[🦎] Current Steem Price ${currentPrice}`);
-      this.publishFeed(currentPrice, 3);
+      L.log(`[ws 🦎 ] Current Steem Price ${currentPrice}`);
+      const prevPrice = this.steemPrice;
+      if (Math.abs(prevPrice - currentPrice) > SENSITIVITY) {
+        this.steemPrice = parseFloat(parseFloat(`${currentPrice}`).toFixed(3));
+        this.publishFeed(currentPrice, 3);
+      } else {
+        L.log("[ws 🦎 ] Price not change");
+      }
     });
   }
 
   public async updatePriceRest() {
-    const steemPrice = await this.getSteemPrice();
-    this.publishFeed(steemPrice, 3);
+    const currentPrice = await this.getSteemPrice();
+    L.log(`[api 🦎 ] Current Steem Price ${currentPrice}`);
+    const prevPrice = this.steemPrice;
+    if (Math.abs(prevPrice - currentPrice) > SENSITIVITY) {
+      this.steemPrice = parseFloat(parseFloat(`${currentPrice}`).toFixed(3));
+      this.publishFeed(currentPrice, 3);
+    } else {
+      L.log("[api 🦎 ] Price not change");
+    }
   }
 
   public async getBtcPrice() {
