@@ -64,7 +64,9 @@ export default class SteemFeedPrice {
     const currentPrice = await this.getSteemPrice();
     L.log(`[api 🦎 ] Current Steem Price ${currentPrice}`);
     const prevPrice = this.steemPrice;
-    if (Math.abs(prevPrice - currentPrice) > SENSITIVITY) {
+    const diffPrice =
+      Number(prevPrice.toFixed(3)) - Number(currentPrice.toFixed(3));
+    if (Math.abs(diffPrice) > SENSITIVITY) {
       this.steemPrice = parseFloat(parseFloat(`${currentPrice}`).toFixed(3));
       this.publishFeed(currentPrice, 3);
     } else {
