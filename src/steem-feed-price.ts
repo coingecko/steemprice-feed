@@ -85,11 +85,11 @@ export default class SteemFeedPrice {
   // util
   public async publishFeed(price: number, retries = 0) {
     try {
-      let exchange_rate = new Price(
+      const exchange_rate = new Price(
         Asset.fromString(`${price.toFixed(3)} SBD`),
         Asset.fromString(`${(1 / PEGMULTI).toFixed(3)} STEEM`)
       );
-      let op: FeedPublishOperation = [
+      const op: FeedPublishOperation = [
         "feed_publish",
         { exchange_rate, publisher: WITNESS }
       ];

@@ -1,4 +1,5 @@
 import * as ws from "ws";
+import L from "./logger";
 
 export interface ICoinMessage {
   identifier: { channel: string; m: string };
@@ -32,6 +33,9 @@ export const coinDataListener = (
           data: res.message as any
         });
       }
+    };
+    socket.onerror = () => {
+      L.error("Websocket error");
     };
     subscribers.push(socket);
   });
