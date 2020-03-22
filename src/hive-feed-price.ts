@@ -1,7 +1,7 @@
 import { Client, Price, Asset, FeedPublishOperation, PrivateKey } from "dsteem";
 import {
-  SteemAPI,
-  SteemApiArray,
+  HiveAPI,
+  HiveAPIArray,
   ACTIVEKEY,
   WITNESS,
   PEGMULTI,
@@ -11,27 +11,26 @@ import { coinDataListener } from "./websocket";
 import { fetchCgSimplePrice } from "./restapi";
 import L from "./logger";
 
-export default class SteemFeedPrice {
+export default class HiveFeedPrice {
   // data
   public client: Client;
   public coinDataListener: { unsubscribe: () => void } | null = null;
   public retries = 0;
   public currentApiPosition = 0;
-  public availableSteemApi = SteemApiArray;
-  public steemPrice = 0;
-  public bitcoinPrice = 0;
+  public availableHiveApi = HiveAPIArray;
+  public hivePrice = 0;
   public lastPriceUpdate: number = 0;
 
   // Static data
-  public static steemApiList = SteemAPI;
+  public static hiveApiList = HiveAPI;
 
-  constructor(api: SteemAPI) {
+  constructor(api: HiveAPI) {
     L.log("Initialize price feed");
     this.currentApiPosition =
-      this.availableSteemApi.indexOf(api) > -1
-        ? this.availableSteemApi.indexOf(api)
+      this.availableHiveApi.indexOf(api) > -1
+        ? this.availableHiveApi.indexOf(api)
         : 0;
-    const currentApi = this.availableSteemApi[this.currentApiPosition];
+    const currentApi = this.availableHiveApi[this.currentApiPosition];
     L.log(`Current API: ${currentApi}`);
     this.client = new Client(currentApi);
   }
@@ -47,12 +46,12 @@ export default class SteemFeedPrice {
       L.log("resubsribe to websocket");
       this.coinDataListener.unsubscribe();
     }
-    this.coinDataListener = coinDataListener(["steem"], data => {
+    this.coinDataListener = coinDataListener(["hive"], data => {
       const currentPrice = data.data.p.usd;
-      L.log(`[ws 🦎 ] Current Steem Price ${currentPrice}`);
-      const prevPrice = this.steemPrice;
+      L.log(`[ws 🦎 ] Current Hive Price ${currentPrice}`);
+      const prevPrice = this.hivePrice;
       if (Math.abs(prevPrice - currentPrice) > SENSITIVITY) {
-        this.steemPrice = parseFloat(parseFloat(`${currentPrice}`).toFixed(3));
+        this.hivePrice = parseFloat(parseFloat(`${currentPrice}`).toFixed(3));
         this.publishFeed(currentPrice, 3);
       } else {
         L.log("[ws 🦎 ] Price not change");
@@ -61,25 +60,21 @@ export default class SteemFeedPrice {
   }
 
   public async updatePriceRest() {
-    const currentPrice = await this.getSteemPrice();
-    L.log(`[api 🦎 ] Current Steem Price ${currentPrice}`);
-    const prevPrice = this.steemPrice;
+    const currentPrice = await this.getHivePrice();
+    L.log(`[api 🦎 ] Current Hive Price ${currentPrice}`);
+    const prevPrice = this.hivePrice;
     const diffPrice =
       Number(prevPrice.toFixed(3)) - Number(currentPrice.toFixed(3));
     if (Math.abs(diffPrice) > SENSITIVITY) {
-      this.steemPrice = parseFloat(parseFloat(`${currentPrice}`).toFixed(3));
+      this.hivePrice = parseFloat(parseFloat(`${currentPrice}`).toFixed(3));
       this.publishFeed(currentPrice, 3);
     } else {
       L.log("[api 🦎 ] Price not change");
     }
   }
 
-  public async getBtcPrice() {
-    return await fetchCgSimplePrice("bitcoin");
-  }
-
-  public async getSteemPrice() {
-    return await fetchCgSimplePrice("steem");
+  public async getHivePrice() {
+    return await fetchCgSimplePrice("hive");
   }
 
   // util
@@ -114,10 +109,10 @@ export default class SteemFeedPrice {
 
   public rpcFailover() {
     this.currentApiPosition =
-      this.currentApiPosition + 1 > this.availableSteemApi.length
+      this.currentApiPosition + 1 > this.availableHiveApi.length
         ? 0
         : this.currentApiPosition + 1;
-    const currentApi = this.availableSteemApi[this.currentApiPosition];
+    const currentApi = this.availableHiveApi[this.currentApiPosition];
     L.error(`Failover, switch to ${currentApi}`);
     this.client = new Client(currentApi);
   }

@@ -1,7 +1,7 @@
 {
-  "name": "steem-price-feed",
+  "name": "hive-price-feed",
   "version": "0.0.1",
-  "description": "Update steemfeed price with coingecko API and Websocket & fallback",
+  "description": "Update hivefeed price with coingecko API and Websocket & fallback",
   "dependencies": {
     "chalk": "^2.4.2",
     "dotenv": "^8.0.0",

@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
-import SteemFeedPrice from "./steem-feed-price";
+import SteemFeedPrice from "./hive-feed-price";
 import L from "./logger";
 import {
   WEBSOCKETTIMEOUT,
@@ -15,7 +15,7 @@ if (!WITNESS || !ACTIVEKEY) {
   process.exit(1);
 }
 
-const sfp = new SteemFeedPrice(SteemFeedPrice.steemApiList.steemit);
+const sfp = new SteemFeedPrice(SteemFeedPrice.hiveApiList.hive);
 sfp.start();
 
 setInterval(() => {

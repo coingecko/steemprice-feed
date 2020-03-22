@@ -1,12 +1,13 @@
-# Steem-Price-Feed
+# Hive-Price-Feed
 
-[![Build Status](https://travis-ci.org/coingecko/steemprice-feed.svg?branch=master)](https://travis-ci.org/coingecko/steemprice-feed)
+[![Build Status](https://travis-ci.org/superoo7/hiveprice-feed.svg?branch=master)](https://travis-ci.org/superoo7/hiveprice-feed)
 
-Update Steem Price Feed for Witness using CoinGecko API and WebSocket.
+Update Hive Price Feed for Witness using CoinGecko API and WebSocket.
 
 ## Feature
 
-- Using CoinGecko websocket to update Steem price feed on the fly.
+- Using CoinGecko websocket to update Hive price feed on the fly.
+- Added test cases to cover edge cases for this script
 - In case websocket disconnected use CoinGecko REST API `/simple/price` endpoint to update price and restart websocket.
 - Using Docker or PM2 approach to respawn the script on error.
 - Customizable env file for setting up websocket, price time out, and sensitivity.
@@ -21,20 +22,20 @@ Update Steem Price Feed for Witness using CoinGecko API and WebSocket.
 
 **General step**
 
-- git clone this repo `git clone git@github.com:coingecko/steemprice-feed.git`
-- `cd steemprice-feed`
+- git clone this repo `git clone git@github.com:superoo7/hiveprice-feed.git`
+- `cd hiveprice-feed`
 - edit .env.sample to .env (`cp .env.sample .env` then `nano .env` or `vi .env`)
 
 ```
-ACTIVEKEY= # Steem Active Key (String)
-WITNESS= # Steem Witness Username (String)
+ACTIVEKEY= # Hive Active Key (String)
+WITNESS= # Hive Witness Username (String)
 PEGMULTI=1 # Peg Multiple settings (Number) [default: 1]
 WEBSOCKETTIMEOUT=10 # Time out in minutes for checking web socket (Number) [default: 10]
 PRICETIMEOUT=5 # Time out in minutes for last price check (Number) [default: 5]
 SENSITIVITY=0.000 # Sensitivity for the price update. (Float) [default: 0.000]
 ```
 
-- The default SENSITIVITY is set to `0.000` so that whenever there's a price change, the script will update STEEM price.
+- The default SENSITIVITY is set to `0.000` so that whenever there's a price change, the script will update HIVE price.
 - WEBSOCKETTIMEOUT is to check whether the websocket update the price or not (using js `setInterval`)
 - PRICETIMEOUT will check the last price update date time, to check whether web socket did get the price from the server. If not, restart the web socket connection.
 
