@@ -20,7 +20,7 @@
     "commander": "^2.20.0",
     "inquirer": "^6.3.1",
     "jest": "^24.8.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "ora": "^3.4.0",
     "ts-jest": "^23.10.5",
     "typescript": "^3.2.4"
